@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# NoteNext
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**NoteNext** is a secure, cloud-based note-taking application designed to help users capture thoughts, organize ideas, and access them from anywhere. By leveraging cloud storage, NoteNext ensures your data is always synced and protected.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+  * **Secure Authentication:** Robust login and sign-up system to keep your personal notes private.
+  * **Cloud Synchronization:** Real-time syncing across devices—never lose a note again.
+  * **Minimalist Interface:** A clean, distraction-free UI focused on readability and ease of use.
+  * **Responsive Design:** Fully optimized for desktop and mobile browsers.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  * **Frontend:** React.js.
+  * **Styling:** Bootstrap.
+  * **Backend:** Node.js / Express.
+  * **Database:** MongoDB for persistent note storage.
+  * **Security:** JWT-based authentication and encrypted password hashing.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To get a local copy up and running, follow these simple steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  **Clone the repo**
+    ```bash
+    git clone https://github.com/your-username/notenext.git
+    ```
 
-### `npm run build`
+    NoteNext (iNotebook) is a secure, cloud-ready note-taking application with a React frontend and an Express/MongoDB backend. This README documents local development, production build, API usage, and advanced deployment recommendations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ## Key features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - Secure user authentication (JWT)
+    - Create, read, update, delete notes
+    - Responsive UI (mobile + desktop)
+    - Simple, RESTful API with CORS enabled
 
-### `npm run eject`
+    ## Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    - Frontend: React (Create React App)
+    - Backend: Node.js + Express
+    - Database: MongoDB (Mongoose)
+    - Styling: Bootstrap
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ## Repo structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    - `src/` — React app source
+    - `public/` — static assets
+    - `backend/` — Express server, routes, models
+    - `.eslintrc.json`, `.gitignore` — project configs
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ---
 
-## Learn More
+    ## Quickstart (local)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    1. Install dependencies (root and backend):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm install
+    cd backend
+    npm install
+    cd ..
+    ```
 
-### Code Splitting
+    2. Start both dev servers (frontend + backend):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    ```bash
+    npm run both
+    ```
 
-### Analyzing the Bundle Size
+    The frontend dev server runs on port `3000` and backend on `5000` by default.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    ---
 
-### Making a Progressive Web App
+    ## Environment variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    Create `.env` files for secrets. Example keys:
 
-### Advanced Configuration
+    Backend (`backend/.env`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    - `MONGO_URI` — MongoDB connection string
+    - `JWT_SECRET` — secret for signing JWTs
+    - `PORT` — backend port (default `5000`)
 
-### Deployment
+    ---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    ## Build & serve (production test)
 
-### `npm run build` fails to minify
+    1. Build with production API URL:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    ```bash
+    REACT_APP_API_URL=http://<YOUR_SERVER_IP>:5000 npm run build
+    ```
+
+    2. Serve the `build/` directory for testing:
+
+    ```bash
+    npx serve -s build -l 3000
+    # open http://<YOUR_SERVER_IP>:3000 on devices on the same network
+    ```
+
+    Ensure your backend is running at the `REACT_APP_API_URL` and reachable from other devices (bind to `0.0.0.0` or use your LAN IP). If using Windows, allow the backend port through Windows Defender Firewall.
+
+    ---
+
+    ## API (summary)
+
+    All routes are prefixed with `/api`.
+
+    - `POST /api/auth/createuser` — register: `{ name, email, password }` → `{ success, authToken }`
+    - `POST /api/auth/login` — login: `{ email, password }` → `{ success, authToken }`
+    - `GET /api/notes/fetchallnotes` — list notes (requires `auth-token` header)
+    - `POST /api/notes/addnote` — add note (requires `auth-token` header)
+    - `PUT /api/notes/updatenote/:id` — update note (requires `auth-token` header)
+    - `DELETE /api/notes/deletenote/:id` — delete note (requires `auth-token` header)
+
+    Client stores the JWT in `localStorage` and sends it as the `auth-token` header on subsequent requests.
+
+    ---
+
+    ## Troubleshooting
+
+    - Check browser devtools network tab for failing requests and the backend logs for incoming requests and errors.
+
+    ---
+
+    ## Contributing
+
+    - Fork, create a branch, and open a pull request. Include tests and keep secrets out of commits.
+
+    ## License
+
+    MIT
