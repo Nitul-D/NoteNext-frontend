@@ -25,9 +25,6 @@ To get a local copy up and running, follow these simple steps:
     ```bash
     git clone https://github.com/your-username/notenext.git
     ```
-
-    NoteNext (iNotebook) is a secure, cloud-ready note-taking application with a React frontend and an Express/MongoDB backend. This README documents local development, production build, API usage, and advanced deployment recommendations.
-
     ---
 
     ## Key features
