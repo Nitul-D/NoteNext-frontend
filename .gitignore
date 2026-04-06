@@ -10,6 +10,7 @@ yarn-error.log*
 /.idea
 .vscode
 /backend
+/.eslintrc.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

@@ -86,25 +86,6 @@ To get a local copy up and running, follow these simple steps:
 
     ---
 
-    ## Build & serve (production test)
-
-    1. Build with production API URL:
-
-    ```bash
-    REACT_APP_API_URL=http://<YOUR_SERVER_IP>:5000 npm run build
-    ```
-
-    2. Serve the `build/` directory for testing:
-
-    ```bash
-    npx serve -s build -l 3000
-    # open http://<YOUR_SERVER_IP>:3000 on devices on the same network
-    ```
-
-    Ensure your backend is running at the `REACT_APP_API_URL` and reachable from other devices (bind to `0.0.0.0` or use your LAN IP). If using Windows, allow the backend port through Windows Defender Firewall.
-
-    ---
-
     ## API (summary)
 
     All routes are prefixed with `/api`.
@@ -129,7 +110,3 @@ To get a local copy up and running, follow these simple steps:
     ## Contributing
 
     - Fork, create a branch, and open a pull request. Include tests and keep secrets out of commits.
-
-    ## License
-
-    MIT
