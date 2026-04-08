@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logger from "../utils/logger";
 
 const Login = (props) => {
-  const host = "http://localhost:5000";
+  const host = "https://notenext-backend.vercel.app";
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
