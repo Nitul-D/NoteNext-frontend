@@ -72,7 +72,7 @@ const About = (props) => {
                 </div>
             </div>
         </div>
-        <div className="container">
+        <div className="container" style={{ textAlign: "center" , fontFamily: "sans-serif"}}>
         <p className="footer__copy mt-3 mb-3">&#169; NitulChandraDutta. All rights reserved</p>
         </div>
     </div>
