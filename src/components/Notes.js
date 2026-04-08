@@ -59,11 +59,11 @@ const Notes = (props) => {
             <form className="my-3">
                 <div className="mb-3">
                     <label htmlFor="etitle" className="form-label">Title</label>
-                    <input type="text" className="form-control" id="etitle" name="etitle" aria-describedby="emailHelp"  value = {note.etitle} onChange={onChange} minLength = {5} placeholder="Title must be more than 5 characters" required/>
+                    <input type="text" className="form-control" id="etitle" name="etitle" aria-describedby="emailHelp"  value = {note.etitle} onChange={onChange} required/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="edescription" className="form-label">Description</label>
-                    <input type="text" className="form-control" id="edescription" name="edescription" placeholder="Description must be more than 8 characters" value = {note.edescription} onChange={onChange} minLength = {8} required/>
+                    <input type="text" className="form-control" id="edescription" name="edescription" value = {note.edescription} onChange={onChange} required/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="etag" className="form-label">Tag</label>
@@ -73,7 +73,7 @@ const Notes = (props) => {
             </div>
             <div className="modal-footer">
               <button type="button" ref = {refClose} className="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-              <button disabled = {note.etitle.length < 3 || note.edescription.length < 8} type="button" onClick={handleClick} className="btn btn-outline-primary">Update It</button>
+              <button disabled = {note.etitle.length < 0 || note.edescription.length < 0} type="button" onClick={handleClick} className="btn btn-outline-primary">Update It</button>
             </div>
           </div>
         </div>

@@ -26,17 +26,17 @@ const AddNote = (props) => {
         <form className="my-3">
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Title</label>
-                <input type="text" className="form-control" id="title" name="title" aria-describedby="titlehelp" value={note.title} onChange={onChange} minLength = {5} placeholder="Title must be more than 5 characters" required/>
+                <input type="text" className="form-control" id="title" name="title" aria-describedby="titlehelp" value={note.title} onChange={onChange} placeholder="Title" required/>
             </div>
             <div className="mb-3">
                 <label htmlFor="description" className="form-label">Description</label>
-                <input type="text" className="form-control" id="description" name="description" value={note.description} placeholder="Description must be more than 8 characters" onChange={onChange} minLength = {8} required/>
+                <input type="text" className="form-control" id="description" name="description" value={note.description} placeholder="Description" onChange={onChange} required/>
             </div>
             <div className="mb-3">
                 <label htmlFor="tag" className="form-label">Tag</label>
                 <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange}/>
             </div>
-            <button disabled = {note.title.length < 3 || note.description.length < 8} type="submit" className="btn btn-outline-primary" onClick={handleClick}>Add Note</button>
+            <button disabled = {note.title.length < 0 || note.description.length < 0} type="submit" className="btn btn-outline-primary" onClick={handleClick}>Add Note</button>
         </form>
       </div>
   )
