@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -19,6 +19,20 @@ const Navbar = () => {
       if (toggler) toggler.click();
     }
   }
+
+  // Auto-close the navbar when the user scrolls (mobile UX)
+  useEffect(() => {
+    const handleScrollClose = () => {
+      const navCollapse = document.getElementById('navbarSupportedContent');
+      if (navCollapse && navCollapse.classList.contains('show')) {
+        const toggler = document.querySelector('.navbar-toggler');
+        if (toggler) toggler.click();
+      }
+    }
+
+    window.addEventListener('scroll', handleScrollClose);
+    return () => window.removeEventListener('scroll', handleScrollClose);
+  }, []);
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
