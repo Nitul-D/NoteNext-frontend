@@ -19,6 +19,9 @@ const AddNote = (props) => {
     setNote ({...note, [e.target.name]: e.target.value})
   }
 
+  const isDisabled = note.title.trim().length === 0 || note.description.trim().length === 0;
+  console.log('AddNote state:', note, 'isDisabled:', isDisabled);
+
 
   return (
     <div className="container my-3">
@@ -36,7 +39,7 @@ const AddNote = (props) => {
                 <label htmlFor="tag" className="form-label">Tag</label>
                 <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange}/>
             </div>
-            <button disabled = {note.title.trim().length === 0 || note.description.trim().length === 0} type="submit" className="btn btn-outline-primary" onClick={handleClick}>Add Note</button>
+            <button disabled={isDisabled} type="submit" className="btn btn-outline-primary" onClick={handleClick}>Add Note</button>
         </form>
       </div>
   )
