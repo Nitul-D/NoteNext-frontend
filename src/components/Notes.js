@@ -73,7 +73,7 @@ const Notes = (props) => {
             </div>
             <div className="modal-footer">
               <button type="button" ref = {refClose} className="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-              <button disabled = {note.etitle.trim().length === 0 && note.edescription.trim().length === 0} type="button" onClick={handleClick} className="btn btn-outline-primary">Update It</button>
+              <button disabled = {note.etitle.trim().length === 0 || note.edescription.trim().length === 0} type="button" onClick={handleClick} className="btn btn-outline-primary">Update It</button>
             </div>
           </div>
         </div>
