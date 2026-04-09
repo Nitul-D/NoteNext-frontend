@@ -14,6 +14,7 @@ const Notes = (props) => {
   //Hooks are used to set the note to be edited in the modal
   const ref = useRef(null);
   const refClose = useRef(null);
+  const edescRef = useRef(null);
   const [note, setNote] = useState ({id: "",etitle: "", edescription: "", etag: ""});
 
   useEffect(()=> {
@@ -24,6 +25,13 @@ const Notes = (props) => {
     }
     // eslint-disable-next-line
   }, []);
+
+  useEffect( () => {
+    if (edescRef.current) {
+      edescRef.current.style.height = 'auto';
+      edescRef.current.style.height = edescRef.current.scrollHeight + 'px';
+    }
+  }, [note.edescription]);
 
   const updateNote = (currentNote) => {
     ref.current.click();
@@ -42,7 +50,6 @@ const Notes = (props) => {
    };
 
   const isDisabled = note.etitle.trim().length === 0 || note.edescription.trim().length === 0;
-  console.log("AddNote state:", note, "isDisabled:", isDisabled);
 
   return (
     <>
@@ -66,7 +73,18 @@ const Notes = (props) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="edescription" className="form-label">Description</label>
-                    <input type="text" className="form-control" id="edescription" name="edescription" value = {note.edescription} onChange={onChange} required/>
+                    <textarea
+                      className="form-control"
+                      id="edescription"
+                      name="edescription"
+                      value={note.edescription}
+                      placeholder="Description"
+                      onChange={onChange}
+                      ref={edescRef}
+                      rows={1}
+                      style={{overflow: 'hidden', resize: 'none'}}
+                      required
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="etag" className="form-label">Tag</label>
