@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logger from "../utils/logger";
 
 const Register = (props) => {
@@ -63,6 +63,11 @@ const Register = (props) => {
             </div>
             <button type="submit" className="btn btn-outline-primary">Sign Up</button>
         </form>
+        <div className="container">
+            <p className="mt-3 mb-3" style={{ fontFamily: "sans-serif", textAlign: "center" }}>
+                Already have an account? <Link to="/login">Login here</Link>
+            </p>
+        </div>
     </div>
     </>
   )
